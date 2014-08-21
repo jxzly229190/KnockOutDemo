@@ -138,8 +138,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\knockout-3.1.0.debug.js" />
-    <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -165,6 +165,7 @@
     <Content Include="Views\KnockOut\ContactsEditor.cshtml" />
     <Content Include="Views\KnockOut\View1.cshtml" />
     <Content Include="Views\KoDemo\Index.cshtml" />
+    <Content Include="Views\KoDemo\Shopcart.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

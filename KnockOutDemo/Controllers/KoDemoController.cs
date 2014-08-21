@@ -14,5 +14,10 @@ namespace KnockOutDemo.Controllers
         {
             return View();
         }
+
+		public ActionResult ShopCart()
+		{
+			return View();
+		}
 	}
 }

@@ -6,8 +6,32 @@
 
 <h2>Index</h2>
 
-<script>
-	var vm = [{ name: 'Jimmy', age: 12 }, { name: 'Tom', age: 20 }];
+<div>
+	<div data-bind="foreach: people">
+		<p>
+			name:<input type="text" data-bind="value:name" />&nbsp;&nbsp;&nbsp;&nbsp;
+			age:<input type="text" data-bind="value:age" />&nbsp;&nbsp;&nbsp;&nbsp;
 
-	
+			<a href="###" data-bind="click:$root.remove">remove</a>
+		</p>
+	</div>
+	<a href="###" data-bind="click:add">Add</a>
+</div>
+
+<script>
+	var viewModel = function (people) {
+		var self = this;
+		self.people = ko.observableArray(people);
+
+		self.add = function () {
+			self.people.push({ name: "", age: "" });
+		};
+
+		self.remove = function (person) {
+			self.people.remove(person);
+		};
+	}
+
+	var vm = new viewModel([{ name: 'Jimmy', age: "12" }, { name: 'Tom', age: "20" }]);
+	ko.applyBindings(vm);
 </script>
