@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+	<p class="panel">My name is <span data-bind="text:name()"></span>, age is <span data-bind="text:age">&nbsp;</span></p>
+
+	<p class="panel-danger">My name is <span data-bind="text:vm.name"></span>, phones : <select data-bind="options:vm.phone,click:vm.onClick" multiple="multiple"></select></p>
+	<p class="alert-success">You selected <span data-bind="text:selected()"></span> just now.<input type="button" data-bind="click:remove" value="Remove" class="btn-danger"/></p>
+	<p>I am a <span data-bind="text:age()>18?'MAN':'BOY'">&nbsp;</span></p>
+
+<input data-bind="value:age" type="text" />
+
+</div>
+
+<script type="text/javascript">
+	//var viewModel = {
+	//	name: ko.observable("Jimmy"),
+	//	age: ko.observable(123)
+	//};
+
+	var vm = {
+		name: new ko.observable("Peter"),
+		age: ko.observable(123),
+		phone: new ko.observableArray(["123456", "654321"]),
+		selected: ko.observable("654"),
+		onClick: function (e,i,l) {
+			this.selected(ko.observable(i.target.label));
+		},
+		remove: function () {
+			vm.phone.remove(this.selected());
+			//ko.utils.postJson(location.url, { vm: vm.phone }, function () { });
+		}
+	};
+
+	vm.name("Jimmy");
+
+	vm.selected = ko.observable("abc");
+	
+	ko.applyBindings(vm);
+
+</script>
