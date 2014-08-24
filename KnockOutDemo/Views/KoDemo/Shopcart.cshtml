@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Shopcart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shopcart</h2>
+
+<div data-bind="foreach:shopCarts">
+	<div>
+		Category:<select data-bind="options:sampleProductCategories,optionsText:'name',value:category,optionsCaption:'Select...'"/>
+		&nbsp;&nbsp;
+		Puduct:<select data-bind="options:product,optionsText:'name',value:$parent.product,optionsCaption:'Select...'" />
+		</div>
+</div>
+
+<script type="text/javascript">
+	var sampleProductCategories = [
+  {
+  	"products": [
+      {
+      	"name": "1948 Porsche 356-A Roadster",
+      	"price": 53.9
+      },
+      {
+      	"name": "1948 Porsche Type 356 Roadster",
+      	"price": 62.16
+      }],
+  	"name": "Classic Cars"
+  },
+  {
+  	"products": [
+      {
+      	"name": "1936 Harley Davidson El Knucklehead",
+      	"price": 24.23
+      },
+      {
+      	"name": "1957 Vespa GS150",
+      	"price": 32.95
+      },
+      {
+      	"name": "1960 BSA Gold Star DBD34",
+      	"price": 37.32
+      }],
+  	"name": "Motorcycles"
+  }];
+
+	var shopCart = function () {
+		var self = this;
+		self.category = ko.observableArray();
+		self.product = ko.observableArray();
+		self.quantity = ko.observable(1);
+
+		self.category.subscribe(function () {
+			self.product(undefined);
+		});
+	}
+
+	var cart = function () {
+		var self = this;
+		self.shopCarts=ko.observableArray([new shopCart()]);
+
+	}
+
+	ko.applyBindings(new cart());
+</script>
+
