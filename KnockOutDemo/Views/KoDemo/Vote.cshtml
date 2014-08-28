@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Vote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+<h2>Vote Page</h2>
+
+<div data-bind="foreach:items">
+	<div class="panel btnWidth" data-bind="css:{'panel-info':selected,'panel-default':!selected()},click:$parent.select($data)">
+		<div class="panel-heading">
+			Basic panel Info <span data-bind="text:selected"></span>
+		</div>
+	</div>
+</div>
+
+
+
+<button class="btn btnWidth btn-default">aaaaaaaaaa</button><br/>
+
+<style>
+	.sel {
+		background-color: #d9edf7;
+		border-bottom: 1px solid transparent;
+	}
+
+	.btnWidth{
+		width:60%;
+		cursor:pointer;
+	}
+	
+</style>
+
+<script type="text/javascript">
+	var data = [
+		{
+			name: "Jimmy",
+			selected: true
+		},
+		{
+			name: "Tom",
+			selected: false
+		},
+		{
+			name: "Peter",
+			selected: false
+		},
+		{
+			name: "Ted",
+			selected: true
+		}];
+
+	var item = function (name,selected) {
+		var self = this;
+		self.name = ko.observable(name);
+		self.selected = ko.observable(selected);
+
+		self.change = function () {
+			//var pre = self.selected();
+			self.selected(!self.selected());
+		};
+	};
+
+	var vm = function () {
+		var self = this;
+		//var js = ko.mapping.fromJS(data);
+		self.items = ko.observableArray([new item("Jimmy", false), new item("Peter", false), new item("tom", false)]);
+
+		self.selectedItems = ko.observableArray();
+
+		self.select = function (e) {
+			if (e.selected() == false&&self.selectedItems().length>=2) {
+				alert("Cannot be exceed 2");
+				return;
+			}
+
+			e.selected(!e.selected());
+
+			if (e.selected() == true)
+				self.selectedItems.push(e);
+			else
+				self.selectedItems.remove(e);
+		}
+	};
+
+	ko.applyBindings(new vm());	
+</script>

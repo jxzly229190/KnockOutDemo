@@ -19,5 +19,11 @@ namespace KnockOutDemo.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult Vote()
+		{
+			return View("Vote");
+		}
+
 	}
 }
